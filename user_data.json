@@ -1,8 +1,17 @@
 {
-    "grsmanohar007@gmail.com": {
+    "dhirendrasinghjobner@gmail.com": {
+        "username": "Dhirendra Singh",
+        "whatsapp_number": "+919414592948",
+        "postal_code": 302012
+    },
+    "anandkanwar@gmail.com": {
+        "username": "Anand Kanwar",
+        "whatsapp_number": "+919414592948",
+        "postal_code": 302012
+    },
+    "grsmanohar@gmail.com": {
         "username": "Gaurav Raj Singh",
         "whatsapp_number": "+61449932325",
-        "postal_code": "302012",
-        "product_link": []
+        "postal_code": 3006
     }
 }

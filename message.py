@@ -3,6 +3,8 @@ import os
 
 from dotenv import load_dotenv
 from twilio.rest import Client
+from twilio.rest.routes import PhoneNumberList
+
 
 class SendMessage:
 
@@ -48,6 +50,30 @@ class SendMessage:
                 body=message,
                 from_=self.company_number,
                 to = f"whatsapp:{self.user_phone_number}"
+            )
+
+            if message.sid:
+                self.is_message_send = True
+                return None
+
+    def send_welcome_message(self, phone_number:str, retries:int = 3):
+        """
+        This function send welcome message to the user.
+        :return:
+        """
+
+        self.user_phone_number = phone_number
+        # try to send message three times.
+
+        with open("welcome_message.txt", "r") as file:
+            message = file.read()
+
+        for retry in range(retries):
+
+            message = self.client.messages.create(
+                body=message,
+                from_=self.company_number,
+                to=f"whatsapp:{self.user_phone_number}"
             )
 
             if message.sid:

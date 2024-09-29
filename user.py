@@ -1,6 +1,7 @@
 import json
 
 from flipkart_scraper import FlipKart
+from message import SendMessage
 
 class User:
 
@@ -12,8 +13,10 @@ class User:
         self.product_links = None
         self.postal_code = None
 
+        self.messenger = SendMessage(self.whatsapp_number)
 
-    def add_new_user(self, username, email, whatsapp_number, postal_code):
+
+    def add_new_user(self, username:str, email:str, whatsapp_number:str, postal_code:int):
         """
         This function create a new account of a user.
         :param username: name of the user.
@@ -23,8 +26,10 @@ class User:
         :return: return None
         """
 
-        # check if all the values are not empty.
+        # check if any of the values are not empty.
+        # The return function is executed and return False  if user provide any empty values.
         if not all([username, email, whatsapp_number, postal_code]):
+            print("Please fill all the fields to create the account")
             return False
 
         self.username = username
@@ -57,6 +62,7 @@ class User:
             json.dump(user_data, user_file, indent=4)
 
         print("User added successfully.")
+        self.messenger.send_welcome_message(phone_number=self.whatsapp_number)
         return True
 
     def check_user_email(self, email):
@@ -65,12 +71,6 @@ class User:
         :param email: email of the user.
         :return:
         """
-
-        # check if email id is not empty.
-        if len(email) <= 0:
-            print("Please enter the email address.")
-            return False
-
         # open user_data json file.
         with open("user_data.json", "r") as file:
             user_data = json.load(file)
@@ -162,4 +162,7 @@ class User:
 
 
 user = User()
-user.delete_product(email="grsmanohar007@gmail.com")
+user.add_new_user(username="Gaurav Raj Singh", email="grsmanohar@gmail.com", whatsapp_number="+61449932325", postal_code=3006)
+
+# add product list to each user.
+#user.add_product(email="grsmanohar@gmail.com", product_link="https://www.flipkart.com/fastrack-revoltt-fs1-1-83-display-bt-calling-fastcharge-110-sports-mode-200-watchfaces-smartwatch/p/itmab38b5cb1e3fb?pid=SMWGN4YEWGNZ2GGM&lid=LSTSMWGN4YEWGNZ2GGMLUF0DF&marketplace=FLIPKART&store=ajy%2Fbuh&srno=b_1_1&otracker=browse&fm=organic&iid=en_b7JsMyyguhWLYks8TTYbjVqU07YmcRcrBhmo0l8ZJWfIoZphkA9_s5Cmd769LKLGumbirN8aXntYeeti4EWO_vUFjCTyOHoHZs-Z5_PS_w0%3D&ppt=hp&ppn=homepage&ssid=7eozf4qgio0000001727584549633")
