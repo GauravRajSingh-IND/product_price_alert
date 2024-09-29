@@ -79,3 +79,23 @@ class SendMessage:
             if message.sid:
                 self.is_message_send = True
                 return None
+
+    def send_product_added_message(self,phone_number, name, price, image, retries=3):
+
+        message = f"🌟 New Product Added! 🌟\n\n🛍️ *Product Name:* {name}\n💲 *Price:* {price}"
+
+        for retry in range(retries):
+
+            message = self.client.messages.create(
+                body=message,
+                from_=self.company_number,
+                to=f"whatsapp:{phone_number}",
+                media_url = image
+            )
+
+            if message.sid:
+                self.is_message_send = True
+                return None
+
+
+

@@ -116,6 +116,21 @@ class User:
         with open("user_data.json", "w") as file:
             json.dump(user_data, file, indent=4)
 
+        # Send a message to the user - product added.
+        scraper = FlipKart(product_url=product_link)
+        product_data = scraper.scrape_product_data()
+
+        # get image, name, price.
+        name = product_data["Product_info"]["name"]
+        price = product_data["Product_info"]["price_mrp"]
+        image = product_data["Product_info"]["image"]
+
+        # send Welcome message.
+        user_phone_number = user_data[email]['whatsapp_number']
+        messenger = SendMessage(phone_number=user_phone_number)
+        messenger.send_product_added_message(phone_number=user_phone_number, name=name, price=price, image=image)
+
+
     def delete_product(self, email):
         """
         This function delete one or more products.
@@ -159,10 +174,3 @@ class User:
         # add data to json file.
         with open("user_data.json", "w") as file:
             json.dump(user_data, file, indent=4)
-
-
-user = User()
-user.add_new_user(username="Gaurav Raj Singh", email="grsmanohar@gmail.com", whatsapp_number="+61449932325", postal_code=3006)
-
-# add product list to each user.
-#user.add_product(email="grsmanohar@gmail.com", product_link="https://www.flipkart.com/fastrack-revoltt-fs1-1-83-display-bt-calling-fastcharge-110-sports-mode-200-watchfaces-smartwatch/p/itmab38b5cb1e3fb?pid=SMWGN4YEWGNZ2GGM&lid=LSTSMWGN4YEWGNZ2GGMLUF0DF&marketplace=FLIPKART&store=ajy%2Fbuh&srno=b_1_1&otracker=browse&fm=organic&iid=en_b7JsMyyguhWLYks8TTYbjVqU07YmcRcrBhmo0l8ZJWfIoZphkA9_s5Cmd769LKLGumbirN8aXntYeeti4EWO_vUFjCTyOHoHZs-Z5_PS_w0%3D&ppt=hp&ppn=homepage&ssid=7eozf4qgio0000001727584549633")
