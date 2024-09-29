@@ -38,7 +38,7 @@ class SendMessage:
             else:
                 raise f"Client not set properly on try: {retrie}"
 
-    def send_message(self, message= "Hello Testing", retries:int = 3):
+    def send_product_message(self, message= "Hello Testing", retries:int = 3):
         """
         This function send whatsapp message to user.
         :return:
@@ -53,4 +53,6 @@ class SendMessage:
             if message.sid:
                 self.is_message_send = True
                 return None
+
+
 
