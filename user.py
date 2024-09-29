@@ -1,5 +1,7 @@
 import json
 
+from flipkart_scraper import FlipKart
+
 class User:
 
     def __init__(self):
@@ -114,3 +116,50 @@ class User:
         with open("user_data.json", "w") as file:
             json.dump(user_data, file, indent=4)
 
+    def delete_product(self, email):
+        """
+        This function delete one or more products.
+        :param email: email of the user
+        :return:
+        """
+
+        # Load the user_data json file.
+        with open("user_data.json", "r") as file:
+            user_data = json.load(file)
+
+        # get user data.
+        data = user_data[email]
+
+        # extract product link list.
+        products = data['product_link']
+
+        # Check if product link exist.
+        if len(products) == 0:
+            print("Please enter products first")
+            return False
+
+        # loop over each product and create a list of product name's.
+        for i, product in enumerate(products):
+            scraper = FlipKart(product_url=product)
+            product_name = scraper.scrape_product_data()['Product_info']['name']
+
+            print(f"{i+1}: {product_name}")
+
+        del_index = int(input("Please enter the number of the product which you want to delete: "))
+
+        # delete the link from the user product list.
+        products.pop(del_index-1)
+
+        # Add/update the product section.
+        if len(products) >0:
+            user_data[email]['product_link'] = products
+        else:
+            user_data[email]['product_link'] = []
+
+        # add data to json file.
+        with open("user_data.json", "w") as file:
+            json.dump(user_data, file, indent=4)
+
+
+user = User()
+user.delete_product(email="grsmanohar007@gmail.com")
