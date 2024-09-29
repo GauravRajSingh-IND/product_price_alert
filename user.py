@@ -78,6 +78,3 @@ class User:
             return True
         else:
             return False
-
-user = User()
-response = user.add_new_user(username="Gaurav Raj Singh", email="grsmanohar007@gmail.com", whatsapp_number="+61449932325", postal_code="302012")
