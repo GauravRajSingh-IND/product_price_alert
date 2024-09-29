@@ -1,5 +1,3 @@
-from dis import disco
-
 from bs4 import BeautifulSoup
 from time import sleep
 
@@ -14,7 +12,6 @@ class FlipKart:
 
         self.product_url = product_url
         self.product_content = None
-
         self.get_html_content()
 
     def scrape_product_data(self):
@@ -80,10 +77,3 @@ class FlipKart:
     def _get_src(self, element, default="N/A"):
         """Helper function to safely extract text from an element."""
         return element['src'] if element else default
-
-scraper = FlipKart(product_url="https://www.flipkart.com/fastrack-revoltt-fs1-1-83-display-bt-calling-fastcharge-110-sports-mode-200-watchfaces-smartwatch/p/itmab38b5cb1e3fb?pid=SMWGN4YEWGNZ2GGM&lid=LSTSMWGN4YEWGNZ2GGMLUF0DF&marketplace=FLIPKART&store=ajy%2Fbuh&srno=b_1_1&otracker=browse&fm=organic&iid=en_b7JsMyyguhWLYks8TTYbjVqU07YmcRcrBhmo0l8ZJWfIoZphkA9_s5Cmd769LKLGumbirN8aXntYeeti4EWO_vUFjCTyOHoHZs-Z5_PS_w0%3D&ppt=hp&ppn=homepage&ssid=7eozf4qgio0000001727584549633")
-
-if scraper.product_content is not None:
-    scraped_data = scraper.scrape_product_data()
-
-    print(scraped_data)
