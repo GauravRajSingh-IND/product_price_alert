@@ -53,6 +53,3 @@ class SendMessage:
             if message.sid:
                 self.is_message_send = True
                 return None
-
-
-
