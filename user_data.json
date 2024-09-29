@@ -1,12 +1,10 @@
 {
-    "grsmanohar@gmail.com": {
-        "username": "Gaurav Raj Singh",
-        "whatsapp_number": "+61449932325",
-        "postal_code": "302012"
-    },
     "grsmanohar007@gmail.com": {
         "username": "Gaurav Raj Singh",
         "whatsapp_number": "+61449932325",
-        "postal_code": "302012"
+        "postal_code": "302012",
+        "product_link": [
+            "https://www.flip3-display-bt-calling-fastcharge-110-sports-mode-200-watchfaces-smartwatch/p/itmab38b5cb1e3fb?pid=SMWGN4YEWGNZ2GGM&lid=LSTSMWGN4YEWGNZ2GGMLUF0DF&marketplace=FLIPKART&store=ajy%2Fbuh&srno=b_1_1&otracker=browse&fm=organic&iid=en_b7JsMyyguhWLYks8TTYbjVqU07YmcRcrBhmo0l8ZJWfIoZphkA9_s5Cmd769LKLGumbirN8aXntYeeti4EWO_vUFjCTyOHoHZs-Z5_PS_w0%3D&ppt=hp&ppn=homepage&ssid=7eozf4qgio0000001727584549633"
+        ]
     }
 }

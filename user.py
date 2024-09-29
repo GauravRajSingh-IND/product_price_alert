@@ -78,3 +78,39 @@ class User:
             return True
         else:
             return False
+
+    def add_product(self, email, product_link):
+        """
+        This function takes email id and product link and add it to product_link.
+        :param email: email of user.
+        :param product_link: product link
+        :return:
+        """
+
+        # load json file and extract user data.
+        with open("user_data.json", "r") as file_data:
+            user_data = json.load(file_data)
+
+        # Extract user data.
+        user_info = user_data[email]
+
+        # check weather product_link key exist or not.
+        if "product_link" in user_info.keys():
+            product_links = user_info["product_link"]
+
+            # Check weather the product already exist.
+            if product_link in product_links:
+                print("Product already exist")
+            else:
+                user_info["product_link"].append(product_link)
+
+        else:
+            user_info["product_link"] = [product_link]
+
+        # Update the user data.
+        user_data[email].update(user_info)
+
+        # add data to json file.
+        with open("user_data.json", "w") as file:
+            json.dump(user_data, file, indent=4)
+
