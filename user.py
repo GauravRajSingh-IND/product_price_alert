@@ -30,6 +30,11 @@ class User:
         self.whatsapp_number = whatsapp_number
         self.postal_code = postal_code
 
+        # Check if user already exist.
+        if self.check_user_email(email=email):
+            print("User already exist.")
+            return False
+
         # create a dictionary using user information.
         data = {
                 "username": self.username,
@@ -49,6 +54,30 @@ class User:
         with open("user_data.json", "w") as user_file:
             json.dump(user_data, user_file, indent=4)
 
+        print("User added successfully.")
+        return True
+
+    def check_user_email(self, email):
+        """
+        This function check if the user email is already exist or not.
+        :param email: email of the user.
+        :return:
+        """
+
+        # check if email id is not empty.
+        if len(email) <= 0:
+            print("Please enter the email address.")
+            return False
+
+        # open user_data json file.
+        with open("user_data.json", "r") as file:
+            user_data = json.load(file)
+
+        # check if username exist in the user dataset.
+        if email in user_data.keys():
+            return True
+        else:
+            return False
 
 user = User()
-user.add_new_user(username="Gaurav", email="grsmanohar007@gmail.com", whatsapp_number="q", postal_code="q")
+response = user.add_new_user(username="Gaurav Raj Singh", email="grsmanohar007@gmail.com", whatsapp_number="+61449932325", postal_code="302012")
